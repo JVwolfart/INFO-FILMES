@@ -1,0 +1,83 @@
+{% extends 'base.html'%}
+{% load static%}
+{% block 'titulo'%}
+Login
+{% endblock%}
+
+{% block 'conteudo'%}
+
+{% include 'parciais/_messages.html'%}          
+
+<h1 class="text-center my-5 text-danger">Informações sobre a obra</h1>
+          
+
+<div class="row ">
+  <div class="col-lg-5">
+    {% if filme.Poster != 'N/A'%}
+    <div class="text-center">
+      <img src="{{filme.Poster}}" style="width: 80%; box-shadow: 10px 10px 10px rgb(175, 175, 175);">
+    </div>
+    {% else %}
+    <div class="text-center">
+      <img src="{% static 'img/sem_foto1.jpeg'%}" style="width: 80%; box-shadow: 10px 10px 10px rgb(175, 175, 175);">
+    </div>
+    {%endif%}
+    {% if not favoritos %}
+    <div class="text-center my-5">
+      <a href=" ?id_filme={{filme.imdbID}}&capa={{filme.Poster}}&titulo={{filme.Title}}&ano={{filme.Year}}&tipo={{filme.Type}}" class="btn btn-primary">Adicionar aos favoritos</a>
+    </div>
+    {% else %}
+    <div class="text-center my-5">
+      <a href="{% url 'remover_favoritos' filme.imdbID%}" class="btn btn-danger">Remover dos favoritos</a>
+    </div>
+    {%endif%}
+  </div>
+  <div class="d-none d-lg-block col-lg-1"></div>
+  
+  <div class="col-lg-6 text-center bg-success" style="box-shadow: 10px 10px 10px rgb(175, 175, 175);">
+    <h1 class="text-warning my-3">{{filme.Title}}</h1>
+    <h6 class="text-info">Atores: {{filme.Actors}}</h6>
+    
+    <h4>Sinopse:</h4>
+      <div class="text-light">
+        {{filme.Plot}}
+      </div>
+    <span class="text-light">Avaliação geral:</span>
+    <p class="text-light">{{filme.imdbRating}}/10 <i class="fa-solid fa-star text-warning"></i></p>
+    
+    <span class="text-light">Fonte da avaliação:</span>
+    {% for f in filme.Ratings%}
+    <p class="text-light">{{f.Source}} -> {{f.Value}}<i class="fa-solid fa-star text-warning"></i></p>
+    {% endfor %}
+    
+    
+    <span class="text-light">Número de avaliações desta obra:</span>
+    <p class="text-light">{{filme.imdbVotes}}</p>
+    
+    <span class="text-light">Ano de lançamento desta obra:</span>
+    <p class="text-light">{{filme.Year}}</p>
+    
+    <span class="text-light">Data de lançamento desta obra (release):</span>
+    <p class="text-light">{{filme.Released}}</p>
+
+    <span class="text-light">Idioma:</span>
+    <p class="text-light">{{filme.Language}}</p>
+
+    <span class="text-light">País de origem:</span>
+    <p class="text-light">{{filme.Country}}</p>
+
+    <span class="text-light">Premiações:</span>
+    <p class="text-light">{{filme.Awards}}</p>
+
+    <span class="text-light">Roteiristas:</span>
+    <p class="text-light">{{filme.Writer}}</p>
+
+    <span class="text-light">Indicação etária:</span>
+    <p class="text-light">{{filme.Rated}}</p>
+  </div>
+  
+  
+
+</div>
+
+{% endblock%}
