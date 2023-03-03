@@ -44,6 +44,6 @@ Para mais detalhes deste e de outros projetos acesse meu portifólio
 
 http://jvitorwolfart.pinheirasc.com/index.php/2022/07/19/projeto-info-filmes/
 
-Para quem quiser conhecer o site, segue abaixo o link com o deploy no Heroku
+Para quem quiser conhecer o site, segue abaixo o link com o deploy na minha VPS:
 
-https://info-filmes.herokuapp.com/
+https://filmes.pinheirasc.com/
